@@ -1,56 +1,66 @@
-/** @license
- The MIT License
-
- Copyright (c) 2010 Daniel Park
-
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to deal
- in the Software without restriction, including without limitation the rights
- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
-
- The above copyright notice and this permission notice shall be included in
- all copies or substantial portions of the Software.
-
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- THE SOFTWARE.
- **/
+/*
+ * Copyright 2010, Google Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are
+ * met:
+ *
+ *     * Redistributions of source code must retain the above copyright
+ * notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above
+ * copyright notice, this list of conditions and the following disclaimer
+ * in the documentation and/or other materials provided with the
+ * distribution.
+ *     * Neither the name of Google Inc. nor the names of its
+ * contributors may be used to endorse or promote products derived from
+ * this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 ;(function(self) {
   /**
-   * JSOL stands for JavaScript Object Literal which is the syntax for representing an object in JavaScript.
-   *
-   * For example:
-   *
-   * {foo:"bar"} is equivalent to {"foo":"bar"} in JavaScript.
-   *
-   * Notice that {"foo":"bar"} is proper JSON[2] therefore you can use one of the many JSON parsers out there like json2.js[1]
-   * or even the native browser's JSON parser, if available.
-   *
-   * However, {foo:"bar"} is NOT proper JSON but valid JavaScript syntax for representing an object with key, "foo" and value, "bar".
-   * Using a JSON parser is not an option since this is NOT proper JSON.
-   *
-   * You can use JSOL.parse to safely parse any string that reprsents a JavaScript Object Literal.
-   * JSOL.parse will throw an Invalid JSOL exception on function calls, function declarations and variable references.
-   *
-   * Examples:
-   *
-   * JSOL.parse('{foo:"bar"}');  // valid
-   *
-   * JSOL.parse('{evil:(function(){alert("I\'m evil");})()}');  // invalid function calls
-   *
-   * JSOL.parse('{fn:function() { }}'); // invalid function declarations
-   *
-   * var bar = "bar";
-   * JSOL.parse('{foo:bar}');  // invalid variable references
-   *
-   * [1] http://www.json.org
-   * [2] http://www.json.org/json2.js
+   JSOL stands for JavaScript Object Literal which is a string representing
+   an object in JavaScript syntax.
+
+   For example:
+
+   {foo:"bar"} is equivalent to {"foo":"bar"} in JavaScript. Both are valid JSOL.
+
+   Note that {"foo":"bar"} is proper JSON[1] therefore you can use one of the many
+   JSON parsers out there like json2.js[2] or even the native browser's JSON parser,
+   if available.
+
+   However, {foo:"bar"} is NOT proper JSON but valid Javascript syntax for
+   representing an object with one key, "foo" and its value, "bar".
+   Using a JSON parser is not an option since this is NOT proper JSON.
+
+   You can use JSOL.parse to safely parse any string that reprsents a JavaScript Object Literal.
+   JSOL.parse will throw an Invalid JSOL exception on function calls, function declarations and variable references.
+
+   Examples:
+
+   JSOL.parse('{foo:"bar"}');  // valid
+
+   JSOL.parse('{evil:(function(){alert("I\'m evil");})()}');  // invalid function calls
+
+   JSOL.parse('{fn:function() { }}'); // invalid function declarations
+
+   var bar = "bar";
+   JSOL.parse('{foo:bar}');  // invalid variable references
+
+   [1] http://www.json.org
+   [2] http://www.json.org/json2.js
    */
   if (!self.JSOL) {
     self.JSOL = {};
