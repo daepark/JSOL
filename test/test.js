@@ -13,6 +13,11 @@ test("valid mixed", 1, function() {
   deepEqual(JSOL.parse(jsol), {hello:"world", foo:2, bar:false});
 });
 
+test("valid key value array", 1, function() {
+  var jsol = '{hello:[{world:"hello"}]}';
+  deepEqual(JSOL.parse(jsol), {hello:[{world:"hello"}]});
+});
+
 test("invalid function call", 1, function() {
   try {
     function callme() {alert("hello?");};
